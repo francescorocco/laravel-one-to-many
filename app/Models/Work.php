@@ -14,10 +14,15 @@ class Work extends Model
         'title',
         'description',
         'languages',
-        'slug'
+        'slug',
+        'type_id'
     ];
 
     public static function generateSlug(string $title) {
         return Str::slug($title, '-');
+    }
+
+    public function types(){
+        return $this->belongsTo(Type::class);
     }
 }

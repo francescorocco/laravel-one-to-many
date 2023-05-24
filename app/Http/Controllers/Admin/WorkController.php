@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Work;
 use App\Http\Requests\StoreWorkRequest;
 use App\Http\Requests\UpdateWorkRequest;
+use App\Models\Type;
 
 class WorkController extends Controller
 {
@@ -27,7 +28,8 @@ class WorkController extends Controller
      */
     public function create()
     {
-        return view('admin.works.create');
+        $types = Type::all();
+        return view('admin.works.create', compact('types'));
     }
 
     /**
@@ -41,10 +43,10 @@ class WorkController extends Controller
         $form_data = $request->validated();
         $form_data['slug'] = Work::generateSlug($request->title);
         $checkPost = Work::where('slug', $form_data['slug'])->first();
+
         if ($checkPost) {
             return back()->withInput()->withErrors(['slug' => 'Impossibile creare lo slug per questo progetto, cambia il titolo']);
         }
-
 
         $newWork = Work::create($form_data);
 
@@ -71,8 +73,9 @@ class WorkController extends Controller
      */
     public function edit($id)
     {
+        $types = Type::all();
         $work = Work::findOrFail($id);
-        return view('admin.works.edit', compact('work'));
+        return view('admin.works.edit', compact('work','types'));
     }
 
     /**
