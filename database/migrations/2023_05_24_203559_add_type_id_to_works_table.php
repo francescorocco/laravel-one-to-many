@@ -18,7 +18,7 @@ return new class extends Migration
 
                 // qui creiamo il collegamento tra le 2 tabelle, la disposizione del 
                 // codice deve essere questa perchè segue una logica
-            $table->foreign('type_id')->references('id')->on('works')->onDelete('SET NULL');
+            $table->foreign('type_id')->references('id')->on('types')->onDelete('SET NULL');
         });
     }
 

@@ -5,13 +5,14 @@
 
     <a href="{{route('admin.works.create')}}">Inserisci un nuovo progetto</a>
 
-    <table class="table-info table-bordered border-info w-100">
+    <table class="table-info w-100">
         <thead>
             <tr>
                 <th>#</th>
                 <th>Titolo</th>
                 <th>Slug</th>
                 <th>Descrizione</th>
+                <th>Tipi</th>
                 <th>Azioni</th>
             </tr>
         </thead>
@@ -24,6 +25,7 @@
                 <td>{{$work->title}}</td>
                 <td>{{$work->description}}</td>
                 <td>{{$work->slug}}</td>
+                <td>{{$work->type?->name}}</td>
                 <td>    
                     <a class="btn btn-primary" href="{{route('admin.works.show',  ['work'=>$work->id])}}">Dettagli</a>
                     <a class="btn btn-secondary" href="{{route('admin.works.edit',  ['work'=>$work->id])}}">Modifica</a>

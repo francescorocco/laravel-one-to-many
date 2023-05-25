@@ -9,7 +9,7 @@ class Type extends Model
 {
     use HasFactory;
 
-    public function types(){
+    public function works_method(){
         return $this->hasMany(Work::class);
     }
 }
